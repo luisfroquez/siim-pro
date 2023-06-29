@@ -1,10 +1,25 @@
-import React from "react";
+import React, { CSSProperties, useState } from "react";
 
-const SIIMGroupLogo = ({ width = 600 }: { width?: number }) => {
+const initialStyle: CSSProperties = {
+  aspectRatio: 2.44 / 1,
+  transition: "0.75s",
+};
+
+const SIIMGroupLogo = ({
+  width = 600,
+  hover,
+}: {
+  width?: number;
+  hover?: CSSProperties;
+}) => {
+  const [style, setStyle] = useState(initialStyle);
+
   return (
     <svg
       width={width}
-      style={{ aspectRatio: 2.44 / 1 }}
+      style={style}
+      onMouseEnter={() => hover && setStyle({ ...initialStyle, ...hover })}
+      onMouseLeave={() => setStyle(initialStyle)}
       viewBox="0 0 600 246"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

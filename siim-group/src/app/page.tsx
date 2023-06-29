@@ -3,10 +3,21 @@
 import DistribuidoraVerticalLogo from "@/components/ui/logos/DistribuidoraVerticalLogo";
 import IngenieriaVerticalLogo from "@/components/ui/logos/IngenieriaVerticalLogo";
 import SIIMGroupLogo from "@/components/ui/logos/SIIMGroupLogo";
-import { Box, Button, Center, Flex, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Text,
+  VStack,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Home() {
+  const [isLargerThanMd] = useMediaQuery("(min-width: 48em)");
+
   return (
     <main>
       <Center w="100vw" h="100vh" pos="relative" flexDir="column" gap={2} p={2}>
@@ -16,15 +27,25 @@ export default function Home() {
           zIndex={2}
           p={4}
           w="100%"
-          h="60%"
+          h={{ base: "100%", md: "60%" }}
           bg="rgba(255, 255, 255, 0.05)"
           borderRadius={8}
         >
-          <SIIMGroupLogo />
+          <SIIMGroupLogo
+            width={isLargerThanMd ? 300 : 200}
+            hover={{ width: isLargerThanMd ? 330 : 220 }}
+          />
         </Center>
 
         {/* TWO OPTIONS */}
-        <Center pos="relative" zIndex={2} w="100%" h="40%" gap={2}>
+        <Center
+          pos="relative"
+          zIndex={2}
+          w="100%"
+          h={{ base: "100%", md: "40%" }}
+          gap={2}
+          flexDir={{ base: "column", md: "row" }}
+        >
           {/* INGENIERIA */}
           <Center
             w="100%"
@@ -37,7 +58,7 @@ export default function Home() {
           >
             {/* LOGO */}
             <Center w="40%" h="100%">
-              <IngenieriaVerticalLogo />
+              <IngenieriaVerticalLogo height={isLargerThanMd ? 160 : 100} />
             </Center>
             {/* TEXT */}
             <VStack
@@ -46,13 +67,17 @@ export default function Home() {
               alignItems="flex-start"
               justifyContent="center"
               pr={4}
-              spacing={8}
+              spacing={{ base: 4, md: 8 }}
             >
-              <Text color="white">
-                Servicios integrales de ingenería y montajes
+              <Text
+                color="white"
+                fontSize={{ base: "xs", md: "sm", lg: "md" }}
+                lineHeight={{ base: "0.85rem", md: "1rem", lg: "1.25rem" }}
+              >
+                Servicios integrales de ingenería y montajes.
               </Text>
               <Link href="https://ingenieria.siim.cl/">
-                <Button variant="iPrimary" size="sm">
+                <Button variant="iPrimary" size={{ base: "xs", md: "sm" }}>
                   Ir a ingeniería
                 </Button>
               </Link>
@@ -60,7 +85,11 @@ export default function Home() {
           </Center>
 
           {/* DIVIDER */}
-          <Box w={1} h="100%" bg="gray.600" />
+          <Divider
+            borderWidth={1}
+            borderColor="gray.600"
+            orientation={isLargerThanMd ? "vertical" : "horizontal"}
+          />
 
           {/* DISTRIBUIDORA */}
           <Center
@@ -74,7 +103,7 @@ export default function Home() {
           >
             {/* LOGO */}
             <Center w="40%" h="100%">
-              <DistribuidoraVerticalLogo />
+              <DistribuidoraVerticalLogo height={isLargerThanMd ? 160 : 100} />
             </Center>
             {/* TEXT */}
             <VStack
@@ -83,15 +112,19 @@ export default function Home() {
               alignItems="flex-start"
               justifyContent="center"
               pr={4}
-              spacing={8}
+              spacing={{ base: 4, md: 8 }}
             >
-              <Text color="white" fontSize="sm">
+              <Text
+                color="white"
+                fontSize={{ base: "xs", md: "sm", lg: "md" }}
+                lineHeight={{ base: "0.85rem", md: "1rem", lg: "1.25rem" }}
+              >
                 Distribuidora de materiales y equipos en las áreas de detección
                 y extinción de incendios, seguridad electrónica, ferretería y
                 electricidad.
               </Text>
               <Link href="https://distribuidora.siim.cl/">
-                <Button variant="dPrimary" size="sm">
+                <Button variant="dPrimary" size={{ base: "xs", md: "sm" }}>
                   Ir a distribuidora
                 </Button>
               </Link>
