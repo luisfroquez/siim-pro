@@ -1,0 +1,22 @@
+.navbarContainer {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  border: 1px solid #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -moz-backdrop-filter: blur(8px);
+}
+
+.navbarContainer::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: white;
+  opacity: 0.2;
+}
