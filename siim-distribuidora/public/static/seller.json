@@ -1,0 +1,13 @@
+{
+  "topSellers": [
+    {
+      "name": "DISTRIBUIDORA DE MATERIALES Y EQUIPOS",
+      "banner": "/img/logo/logoAzulSiim.png",
+      "img": "/img/banner/banner-2/bannerNuevo2.png",
+      "topProduct": {
+        "name": "SERVICIOS INTEGRALES DE INGENIERIA Y MONTAJES",
+        "img": "/img/logo/logoSIIM.png "
+      }
+    }
+  ]
+}
