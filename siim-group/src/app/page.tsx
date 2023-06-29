@@ -51,7 +51,7 @@ export default function Home() {
               <Text color="white">
                 Servicios integrales de ingenería y montajes
               </Text>
-              <Link href="/ingenieria">
+              <Link href="https://ingenieria.siim.cl/">
                 <Button variant="iPrimary" size="sm">
                   Ir a ingeniería
                 </Button>
@@ -90,7 +90,7 @@ export default function Home() {
                 y extinción de incendios, seguridad electrónica, ferretería y
                 electricidad.
               </Text>
-              <Link href="/distribuidora">
+              <Link href="https://distribuidora.siim.cl/">
                 <Button variant="dPrimary" size="sm">
                   Ir a distribuidora
                 </Button>
