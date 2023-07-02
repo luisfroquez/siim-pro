@@ -1,8 +1,8 @@
-import { menuArray } from "@/components/Navbar/menuArray";
+import { menuArray } from "@/components/navbar/menuArray";
 import { Button, Text, VStack } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import SlideIn from "../Animations/SlideIn";
+import SlideIn from "../animations/SlideIn";
 
 const MobileMenu = ({
   isOpen,

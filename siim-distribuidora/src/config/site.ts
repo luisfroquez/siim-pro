@@ -1,60 +1,36 @@
-import type { MainNavItem } from "@/types"
+import type { MainNavItem } from '@/types'
 
-import { productCategories } from "@/config/products"
-import { slugify } from "@/lib/utils"
+import { productCategories } from '@/config/products'
+import { slugify } from '@/lib/utils'
 
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Skateshop13",
+  name: 'SIIM Distribuidora',
   description:
-    "An open source e-commerce skateshop build with everything new in Next.js 13.",
-  url: "https://skateshop.sadmn.com/",
-  ogImage: "https://skateshop.sadmn.com/opengraph-image.png",
+    'Distribuidora de materiales y equipos en las áreas de detección y extinción de incendios, seguridad electrónica, ferretería y electricidad.',
+  url: 'https://distribuidora.siim.cl/',
+  ogImage: 'https://skateshop.sadmn.com/opengraph-image.png',
   mainNav: [
     {
-      title: "Inicio",
+      title: 'Productos',
       items: [
         {
-          title: "Productos",
-          href: "/products",
-          description: "Todos los productos que ofrecemos.",
-          items: [],
-        },
-        {
-          title: "Build a Board",
-          href: "/build-a-board",
-          description: "Build your own custom skateboard.",
-          items: [],
-        },
-        {
-          title: "Blog",
-          href: "/blog",
-          description: "Lee nuestros últimso blog posts.",
+          title: 'Ver todos',
+          href: '/products',
+          description: 'Todos los productos que ofrecemos.',
           items: [],
         },
       ],
     },
-    ...productCategories.map((category) => ({
-      title: category.title,
-      items: [
-        {
-          title: "All",
-          href: `/categories/${slugify(category.title)}`,
-          description: `All ${category.title}.`,
-          items: [],
-        },
-        ...category.subcategories.map((subcategory) => ({
-          title: subcategory.title,
-          href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
-          description: subcategory.description,
-          items: [],
-        })),
-      ],
-    })),
+    {
+      title: 'Blog',
+      href: '/blog',
+      description: 'Lee nuestros últimos blog posts.',
+    },
   ] satisfies MainNavItem[],
   links: {
-    twitter: "https://twitter.com/sadmann17",
-    github: "https://github.com/sadmann7/skateshop",
+    linkedin: 'https://www.linkedin.com/company/siim-group/',
+    instagram: 'https://www.instagram.com/siim_spa/',
   },
 }

@@ -1,4 +1,4 @@
-import SlideIn from "@/components/Animations/SlideIn";
+import SlideIn from "@/components/animations/SlideIn";
 import {
   CloseCircleOutlined,
   FacebookOutlined,
@@ -21,6 +21,7 @@ import {
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
+import { Offset } from "mapbox-gl";
 import Link from "next/link";
 import PinIcon from "public/icons/PinIcon";
 import { useState } from "react";
@@ -88,7 +89,7 @@ const Contacto = () => {
               anchor="top"
               closeButton={false}
               closeOnClick={false}
-              offset={[0, 24]}
+              offset={[0, 24] as Offset}
               onClose={() => setShowPopup(false)}
               style={{ minWidth: "350px" }}
             >
@@ -177,15 +178,15 @@ const Contacto = () => {
           >
             <VStack alignItems={{ base: "flex-start", md: "flex-end" }}>
               <Center gap={2}>
-                <PhoneOutlined width="24px" />
+                <PhoneOutlined width="24px" rev={undefined} />
                 <Text>+56 2 3301 0928</Text>
               </Center>
               <Center gap={2}>
-                <MailOutlined width="24px" />
+                <MailOutlined width="24px" rev={undefined} />
                 <Text>contacto@siim.cl</Text>
               </Center>
               <Center gap={2}>
-                <PushpinOutlined width="24px" />
+                <PushpinOutlined width="24px" rev={undefined} />
                 <Text>Eleuterio Ramírez 731, Local A, Santiago.</Text>
               </Center>
             </VStack>
@@ -202,19 +203,19 @@ const Contacto = () => {
                   href="https://www.facebook.com/SIIMSPAgroup"
                   target="_blank"
                 >
-                  <FacebookOutlined width="24px" />
+                  <FacebookOutlined width="24px" rev={undefined} />
                 </Link>
                 <Link
                   href="https://www.instagram.com/siim_spa/"
                   target="_blank"
                 >
-                  <InstagramOutlined width="24px" />
+                  <InstagramOutlined width="24px" rev={undefined} />
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/siim-group-43b2bb1b9/"
                   target="_blank"
                 >
-                  <LinkedinOutlined width="24px" />
+                  <LinkedinOutlined width="24px" rev={undefined} />
                 </Link>
               </Stack>
             </VStack>

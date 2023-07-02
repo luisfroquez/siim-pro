@@ -1,10 +1,11 @@
-import Link from "next/link"
-import type { User } from "@clerk/nextjs/dist/types/server"
+import Link from 'next/link'
+import { darkModeDetector } from '@/utils/darkModeDetector'
+import type { User } from '@clerk/nextjs/dist/types/server'
 
-import { dashboardConfig } from "@/config/dashboard"
-import { siteConfig } from "@/config/site"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { dashboardConfig } from '@/config/dashboard'
+import { siteConfig } from '@/config/site'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,24 +15,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { CartSheet } from "@/components/cart/cart-sheet"
-import { Combobox } from "@/components/combobox"
-import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/layouts/main-nav"
-import { MobileNav } from "@/components/layouts/mobile-nav"
+} from '@/components/ui/dropdown-menu'
+import { CartSheet } from '@/components/cart/cart-sheet'
+import { Combobox } from '@/components/combobox'
+import { Icons } from '@/components/icons'
+import { MainNav } from '@/components/layouts/main-nav'
+import { MobileNav } from '@/components/layouts/mobile-nav'
 
 interface SiteHeaderProps {
   user: User | null
 }
 
 export function SiteHeader({ user }: SiteHeaderProps) {
-  const initials = `${user?.firstName?.charAt(0) ?? ""}${
-    user?.lastName?.charAt(0) ?? ""
+  const initials = `${user?.firstName?.charAt(0) ?? ''}${
+    user?.lastName?.charAt(0) ?? ''
   }`
   const email =
     user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
-      ?.emailAddress ?? ""
+      ?.emailAddress ?? ''
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -55,7 +56,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                     <Avatar className="h-8 w-8">
                       <AvatarImage
                         src={user.imageUrl}
-                        alt={user.username ?? ""}
+                        alt={user.username ?? ''}
                       />
                       <AvatarFallback>{initials}</AvatarFallback>
                     </Avatar>
@@ -122,7 +123,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               <Link href="/signin">
                 <div
                   className={buttonVariants({
-                    size: "sm",
+                    size: 'sm',
                   })}
                 >
                   Iniciar sesión

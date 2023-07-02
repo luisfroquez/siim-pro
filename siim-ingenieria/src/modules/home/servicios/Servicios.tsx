@@ -1,4 +1,4 @@
-import SlideIn from "@/components/Animations/SlideIn";
+import SlideIn from "@/components/animations/SlideIn";
 import { Flex, Heading, HStack, Square, Text, VStack } from "@chakra-ui/react";
 import ServicesList from "./ServicesList";
 import ServicesListDos from "./ServicesList";

@@ -1,26 +1,26 @@
-import Image from "next/image"
-import Link from "next/link"
-import { db } from "@/db"
-import { products, stores } from "@/db/schema"
-import { desc, eq, sql } from "drizzle-orm"
+import Image from 'next/image'
+import Link from 'next/link'
+import { db } from '@/db'
+import { products, stores } from '@/db/schema'
+import { desc, eq, sql } from 'drizzle-orm'
 
-import { productCategories } from "@/config/products"
-import { cn } from "@/lib/utils"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { Badge } from "@/components/ui/badge"
-import { buttonVariants } from "@/components/ui/button"
+import { productCategories } from '@/config/products'
+import { cn } from '@/lib/utils'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Badge } from '@/components/ui/badge'
+import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { SubscribeToNewsletterForm } from "@/components/forms/subscribe-to-newsletter-form"
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { ProductCard } from "@/components/product-card"
-import { Shell } from "@/components/shell"
+} from '@/components/ui/card'
+import { SubscribeToNewsletterForm } from '@/components/forms/subscribe-to-newsletter-form'
+import { Header } from '@/components/header'
+import { Hero } from '@/components/hero'
+import { ProductCard } from '@/components/product-card'
+import { Shell } from '@/components/shell'
 
 // Running out of edge function execution units on vercel free plan
 // export const runtime = "edge"
@@ -92,7 +92,7 @@ export default async function IndexPage() {
             <div
               className={cn(
                 buttonVariants({
-                  size: "sm",
+                  size: 'sm',
                 })
               )}
             >
@@ -108,7 +108,7 @@ export default async function IndexPage() {
               <div
                 className={cn(
                   buttonVariants({
-                    size: "sm",
+                    size: 'sm',
                   })
                 )}
               >
@@ -139,8 +139,8 @@ export default async function IndexPage() {
                     <div
                       className={cn(
                         buttonVariants({
-                          size: "sm",
-                          className: "h-8 w-full",
+                          size: 'sm',
+                          className: 'h-8 w-full',
                         })
                       )}
                     >

@@ -1,11 +1,13 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import Link from "next/link"
-import type { MainNavItem } from "@/types"
+import * as React from 'react'
+import Link from 'next/link'
+import type { MainNavItem } from '@/types'
+import { useTheme } from 'next-themes'
 
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
+import { useDarkModeDetector } from '@/hooks/use-darkmode-detector'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,8 +16,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Icons } from "@/components/icons"
+} from '@/components/ui/navigation-menu'
+
+// import { Icons } from '@/components/icons'
+
+import { HorizontalLogo, Isologo } from '../ui/logo'
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -29,10 +34,7 @@ export function MainNav({ items }: MainNavProps) {
         href="/"
         className="hidden items-center space-x-2 lg:flex"
       >
-        <Icons.logo className="h-6 w-6" aria-hidden="true" />
-        <span className="hidden font-bold lg:inline-block">
-          {siteConfig.name}
-        </span>
+        <HorizontalLogo className="w-24" aria-hidden="true" />
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
@@ -50,7 +52,7 @@ export function MainNav({ items }: MainNavProps) {
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
                       >
-                        <Icons.logo className="h-6 w-6" aria-hidden="true" />
+                        <Isologo className="w-16" aria-hidden="true" />
                         <div className="mb-2 mt-4 text-lg font-medium">
                           {siteConfig.name}
                         </div>
@@ -100,7 +102,7 @@ export function MainNav({ items }: MainNavProps) {
                   <NavigationMenuItem key={item.title}>
                     <Link href={item.href} legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={cn(navigationMenuTriggerStyle(), "h-auto")}
+                        className={cn(navigationMenuTriggerStyle(), 'h-auto')}
                       >
                         {item.title}
                       </NavigationMenuLink>
@@ -116,8 +118,8 @@ export function MainNav({ items }: MainNavProps) {
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -125,7 +127,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
@@ -140,4 +142,4 @@ const ListItem = React.forwardRef<
   )
 })
 
-ListItem.displayName = "ListItem"
+ListItem.displayName = 'ListItem'

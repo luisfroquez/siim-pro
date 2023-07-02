@@ -1,4 +1,4 @@
-import SlideIn from "@/components/Animations/SlideIn";
+import SlideIn from "@/components/animations/SlideIn";
 import { Heading, Text, Stack, VStack } from "@chakra-ui/react";
 import React from "react";
 import Carousel from "./Carousel";

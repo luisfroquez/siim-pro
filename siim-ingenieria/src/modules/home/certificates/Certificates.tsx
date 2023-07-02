@@ -1,4 +1,4 @@
-import SlideIn from "@/components/Animations/SlideIn";
+import SlideIn from "@/components/animations/SlideIn";
 import {
   Text,
   Flex,

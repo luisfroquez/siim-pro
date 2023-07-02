@@ -1,7 +1,7 @@
-import SlideIn from "@/components/Animations/SlideIn";
+import SlideIn from "@/components/animations/SlideIn";
 import { VStack } from "@chakra-ui/react";
 import React from "react";
-import HomeNavbar from "../../Components/Navbar/HomeNavbar";
+import HomeNavbar from "../../components/navbar/HomeNavbar";
 import Hero from "./Hero";
 import SocialMedia from "./SocialMedia";
 
