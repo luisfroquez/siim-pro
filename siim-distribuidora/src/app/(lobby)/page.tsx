@@ -17,8 +17,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { SubscribeToNewsletterForm } from '@/components/forms/subscribe-to-newsletter-form'
+import { GenerateButton } from '@/components/generate-button'
 import { Header } from '@/components/header'
-import { Hero } from '@/components/hero'
 import { ProductCard } from '@/components/product-card'
 import { Shell } from '@/components/shell'
 
@@ -47,7 +47,6 @@ export default async function IndexPage() {
 
   return (
     <div>
-      {/* <Hero /> */}
       <Shell>
         <Header
           className="place-items-center py-24 text-center"
@@ -56,7 +55,7 @@ export default async function IndexPage() {
         />
         <div className="space-y-5">
           <h2 className="text-2xl font-medium">Categories</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
             {Object.values(products.category.enumValues).map((category) => (
               <Link
                 aria-label={`Go to ${category}`}
@@ -65,7 +64,7 @@ export default async function IndexPage() {
               >
                 <div className="group relative overflow-hidden rounded">
                   <AspectRatio ratio={4 / 5}>
-                    <div className="absolute inset-0 z-10 bg-black/60 transition-colors group-hover:bg-black/70" />
+                    <div className="absolute inset-0 z-10 bg-blue-900/50 transition-colors group-hover:bg-blue-900/70" />
                     <Image
                       src={`https://source.unsplash.com/featured/?${category}`}
                       alt={category}
@@ -75,7 +74,7 @@ export default async function IndexPage() {
                     />
                   </AspectRatio>
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
-                    <h3 className="text-2xl font-medium capitalize text-slate-100">
+                    <h3 className="text-center text-2xl font-medium text-slate-100">
                       {category}
                     </h3>
                   </div>
@@ -88,7 +87,7 @@ export default async function IndexPage() {
           <h2 className="text-2xl font-medium">
             Do you want to sell your products on our website?
           </h2>
-          <Link href="/dashboard/stores">
+          {/* <Link href="/dashboard/stores">
             <div
               className={cn(
                 buttonVariants({
@@ -99,11 +98,14 @@ export default async function IndexPage() {
               Create a store
             </div>
             <span className="sr-only">Create a store</span>
-          </Link>
+          </Link> */}
+          <GenerateButton />
         </Card>
         <div className="space-y-5">
           <div className="flex items-center">
-            <h2 className="flex-1 text-2xl font-medium">Featured products</h2>
+            <h2 className="flex-1 text-2xl font-medium">
+              Productos destacados
+            </h2>
             <Link href="/products">
               <div
                 className={cn(
@@ -112,8 +114,8 @@ export default async function IndexPage() {
                   })
                 )}
               >
-                View all
-                <span className="sr-only">View all products</span>
+                Ver todos
+                <span className="sr-only">Ver todos los productos</span>
               </div>
             </Link>
           </div>
@@ -123,7 +125,7 @@ export default async function IndexPage() {
             ))}
           </div>
         </div>
-        <div className="space-y-5">
+        {/* <div className="space-y-5">
           <h2 className="text-2xl font-medium">Featured stores</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {allStoresWithProductCount.map((store) => (
@@ -152,14 +154,15 @@ export default async function IndexPage() {
               </Card>
             ))}
           </div>
-        </div>
+        </div> */}
         <Card className="mt-4 grid place-items-center gap-4 px-6 py-16 text-center">
           {/* <p className="text-sm text-muted-foreground">
             {dailyNewsletterCount[0]?.count ?? 0} newsletters sent out of 100
             daily limit of the Resend free plan
           </p> */}
           <h2 className="text-2xl font-medium">
-            Join our newsletter to get the latest news and updates
+            Suscríbete a nuestro boletín para obtener las últimas noticias y
+            actualizaciones de SIIM
           </h2>
           <SubscribeToNewsletterForm />
         </Card>

@@ -16,17 +16,48 @@ export const siteConfig = {
       title: 'Productos',
       items: [
         {
-          title: 'Ver todos',
+          title: 'Todos',
           href: '/products',
-          description: 'Todos los productos que ofrecemos.',
+          description: 'Ver todos los productos que ofrecemos.',
           items: [],
         },
+        ...productCategories.map((category) => ({
+          title: category.title,
+          description: category.description,
+          items: [
+            {
+              title: 'All',
+              href: `/categories/${slugify(category.title)}`,
+              description: `All ${category.title}.`,
+              items: [],
+            },
+            ...category.subcategories.map((subcategory) => ({
+              title: subcategory.title,
+              href: `/categories/${slugify(category.title)}/${
+                subcategory.slug
+              }`,
+              description: subcategory.description,
+              items: [],
+            })),
+          ],
+        })),
       ],
+    },
+    {
+      title: 'Instalaciones y Proyectos',
+      href: 'https://siim-ingenieria.vercel.app/',
     },
     {
       title: 'Blog',
       href: '/blog',
-      description: 'Lee nuestros últimos blog posts.',
+    },
+    {
+      title: 'Cotizaciones',
+      href: '/cotizaciones',
+    },
+    {
+      title: 'Contacto',
+      href: '/contacto',
     },
   ] satisfies MainNavItem[],
   links: {

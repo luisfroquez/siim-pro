@@ -21,6 +21,7 @@ export const sortOptions = [
 
 export const productCategories: {
   title: Product['category']
+  description?: string
   subcategories: {
     title: string
     description?: string
@@ -30,6 +31,7 @@ export const productCategories: {
 }[] = [
   {
     title: 'Detección de Incendio',
+    description: 'Equipos',
     subcategories: [
       {
         title: 'Aspiración',

@@ -1,21 +1,22 @@
-"use server"
+'use server'
 
-import { db } from "@/db"
-import { products } from "@/db/schema"
-import { faker } from "@faker-js/faker"
+import { db } from '@/db'
+import { products } from '@/db/schema'
+import { faker } from '@faker-js/faker'
 
 import {
   getSubcategories,
   productCategories,
   productTags,
-} from "@/config/products"
+} from '@/config/products'
 
 export async function generateProducts() {
   await db.delete(products)
 
   for (let i = 0; i < 100; i++) {
     const category =
-      faker.helpers.shuffle(productCategories)[0]?.title ?? "Detección de Incendio"
+      faker.helpers.shuffle(productCategories)[0]?.title ??
+      'Detección de Incendio'
     const subcategories = getSubcategories(category).map((s) => s.value)
 
     await db.insert(products).values({
@@ -28,8 +29,8 @@ export async function generateProducts() {
       inventory: faker.number.int({ min: 0, max: 100 }),
       rating: faker.number.int({ min: 1, max: 5 }),
       tags: faker.helpers.shuffle(productTags).slice(0, 3),
-      storeId: 24,
-      createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+      storeId: 2,
+      createdAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
     })
   }
 }

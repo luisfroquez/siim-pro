@@ -44,8 +44,8 @@ export function MainNav({ items }: MainNavProps) {
                 {items[0].title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
+                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr_1fr]">
+                  <li className="col-span-2">
                     <NavigationMenuLink asChild>
                       <a
                         aria-label="Home"
