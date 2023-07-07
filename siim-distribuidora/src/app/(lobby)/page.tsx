@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { db } from '@/db'
-import { products, stores } from '@/db/schema'
+import { iwsProducts, products, stores } from '@/db/schema'
 import { desc, eq, sql } from 'drizzle-orm'
 
 import { productCategories } from '@/config/products'
@@ -19,18 +19,25 @@ import {
 import { SubscribeToNewsletterForm } from '@/components/forms/subscribe-to-newsletter-form'
 import { GenerateButton } from '@/components/generate-button'
 import { Header } from '@/components/header'
+import { IwsProductCard } from '@/components/iws-product-card'
 import { ProductCard } from '@/components/product-card'
 import { Shell } from '@/components/shell'
+
+import { updateProducts } from '../_actions/update-products-iws'
 
 // Running out of edge function execution units on vercel free plan
 // export const runtime = "edge"
 
 export default async function IndexPage() {
-  const allProducts = await db
-    .select()
-    .from(products)
-    .limit(8)
-    .orderBy(desc(products.createdAt))
+  // await updateProducts()
+
+  const allProducts = await db.select().from(iwsProducts).limit(8)
+
+  // const allProducts = await db
+  //   .select()
+  //   .from(products)
+  //   .limit(8)
+  //   .orderBy(desc(products.createdAt))
 
   const allStoresWithProductCount = await db
     .select({
@@ -45,16 +52,18 @@ export default async function IndexPage() {
     .groupBy(stores.id)
     .orderBy(desc(sql<number>`count(${products.id})`))
 
+  // const data = await updateProducts()
+
   return (
     <div>
-      <Shell>
+      <Shell className="">
         <Header
-          className="place-items-center py-24 text-center"
-          title="¡Bienvenido a SIIM Distribuidora!"
-          description="Tu socio confiable en materiales y equipos para la detección y extinción de incendios, seguridad electrónica, ferretería y electricidad."
+          className="place-items-left rounded-md bg-border p-24 text-left"
+          title="Bienvenido a SIIM Distribuidora®"
+          description="Tus socios confiables en materiales y equipos para la detección y extinción de incendios, seguridad electrónica, ferretería y electricidad."
         />
         <div className="space-y-5">
-          <h2 className="text-2xl font-medium">Categories</h2>
+          <h2 className="text-2xl font-medium">Categorías</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
             {Object.values(products.category.enumValues).map((category) => (
               <Link
@@ -62,7 +71,7 @@ export default async function IndexPage() {
                 key={category}
                 href={`/categories/${category}`}
               >
-                <div className="group relative overflow-hidden rounded">
+                <div className="group relative overflow-hidden rounded-lg">
                   <AspectRatio ratio={4 / 5}>
                     <div className="absolute inset-0 z-10 bg-blue-900/50 transition-colors group-hover:bg-blue-900/70" />
                     <Image
@@ -84,21 +93,8 @@ export default async function IndexPage() {
           </div>
         </div>
         <Card className="mt-4 grid place-items-center gap-5 px-6 py-20 text-center">
-          <h2 className="text-2xl font-medium">
-            Do you want to sell your products on our website?
-          </h2>
-          {/* <Link href="/dashboard/stores">
-            <div
-              className={cn(
-                buttonVariants({
-                  size: 'sm',
-                })
-              )}
-            >
-              Create a store
-            </div>
-            <span className="sr-only">Create a store</span>
-          </Link> */}
+          <h2 className="text-2xl font-medium">Actualizar productos</h2>
+
           <GenerateButton />
         </Card>
         <div className="space-y-5">
@@ -121,9 +117,14 @@ export default async function IndexPage() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {allProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <IwsProductCard key={product.Sku} product={product} />
             ))}
           </div>
+          {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {allProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div> */}
         </div>
         {/* <div className="space-y-5">
           <h2 className="text-2xl font-medium">Featured stores</h2>
@@ -176,7 +177,7 @@ export default async function IndexPage() {
                 subcategory.slug
               }`}
             >
-              <Badge variant="secondary" className="rounded px-3 py-1">
+              <Badge variant="secondary" className="rounded-md px-3 py-1">
                 {subcategory.title}
               </Badge>
               <span className="sr-only">{subcategory.title}</span>

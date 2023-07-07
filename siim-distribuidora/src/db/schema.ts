@@ -14,6 +14,59 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core'
 
+// IWS TABLES:
+// Brands
+export const brands = mysqlTable('brands', {
+  id: serial('id').primaryKey(),
+  ManufacturerId: varchar('manufacturer_id', { length: 12 }).notNull(),
+  BrandId: varchar('brand_id', { length: 12 }).notNull(),
+  description: text('description').notNull(),
+})
+export type Brands = InferModel<typeof brands>
+
+// Categories
+export const categories = mysqlTable('categories', {
+  id: serial('id').primaryKey(),
+  CategoryId: varchar('category_id', { length: 12 }).notNull(),
+  Description: text('description').notNull(),
+  Path: json('path').$type<string[] | null>().default(null),
+})
+export type Categories = InferModel<typeof categories>
+
+// IwsProducts
+export const iwsProducts = mysqlTable('iws_products', {
+  id: serial('id').primaryKey(),
+  Sku: varchar('Sku', { length: 12 }).notNull(),
+  Mpn: varchar('Sku', { length: 12 }).notNull(),
+  Description: text('description'),
+  Images: json('images').$type<StoredFile[] | null>().default(null),
+  BrandId: varchar('brand_id', { length: 12 }).notNull(),
+  CategoryId: varchar('category_id', { length: 12 }).notNull(),
+})
+export type IwsProduct = InferModel<typeof iwsProducts>
+
+// IWS RELATIONS:
+export const brandsRelations = relations(brands, ({ many }) => ({
+  iwsProducts: many(iwsProducts),
+}))
+
+export const categoriesRelations = relations(categories, ({ many }) => ({
+  iwsProducts: many(iwsProducts),
+}))
+
+export const iwsProductsRelations = relations(iwsProducts, ({ one }) => ({
+  brands: one(brands, {
+    fields: [iwsProducts.BrandId],
+    references: [brands.BrandId],
+  }),
+  categories: one(categories, {
+    fields: [iwsProducts.CategoryId],
+    references: [categories.CategoryId],
+  }),
+}))
+
+// OTHERS
+
 export const stores = mysqlTable('stores', {
   id: serial('id').primaryKey(),
   userId: varchar('userId', { length: 191 }).notNull(),

@@ -36,8 +36,25 @@ export function SiteFooter() {
                 })
               )}
             >
-              <Icons.gitHub className="h-4 w-4" aria-hidden="true" />
+              <Icons.linkedin className="h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Linkedin</span>
+            </div>
+          </Link>
+          <Link
+            href={siteConfig.links.instagram}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              className={cn(
+                buttonVariants({
+                  size: 'icon',
+                  variant: 'ghost',
+                })
+              )}
+            >
+              <Icons.instagram className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">Instagram</span>
             </div>
           </Link>
           <ThemeToggle />

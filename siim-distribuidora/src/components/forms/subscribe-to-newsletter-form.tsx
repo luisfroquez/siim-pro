@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import type { z } from "zod"
+import * as React from 'react'
+import { useRouter } from 'next/navigation'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import type { z } from 'zod'
 
-import { emailSchema } from "@/lib/validations/email"
-import { Button } from "@/components/ui/button"
+import { emailSchema } from '@/lib/validations/email'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -16,9 +16,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Icons } from "@/components/icons"
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Icons } from '@/components/icons'
 
 type Inputs = z.infer<typeof emailSchema>
 
@@ -30,7 +30,7 @@ export function SubscribeToNewsletterForm() {
   const form = useForm<Inputs>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   })
 
@@ -38,34 +38,34 @@ export function SubscribeToNewsletterForm() {
     console.log(data)
 
     startTransition(async () => {
-      const response = await fetch("/api/email/newsletter", {
-        method: "POST",
+      const response = await fetch('/api/email/newsletter', {
+        method: 'POST',
         body: JSON.stringify({
           email: data.email,
           // This token is used as a search param in the email preferences page to identify the subscriber.
           token: crypto.randomUUID(),
-          subject: "Welcome to Skateshop13",
+          subject: 'Bienvenid@ al boletín de SIIM Distribuidora',
         }),
       })
 
       if (response.status === 409) {
-        toast.error("You are already subscribed to our newsletter.")
+        toast.error('Ya estás inscrit@ en nuestro boletín.')
       }
 
       if (response.status === 422) {
-        toast.error("Inavlid input.")
+        toast.error('Ingreso inválido.')
       }
 
       if (response.status === 429) {
-        toast.error("The daily email limit has been reached.")
+        toast.error('The daily email limit has been reached.')
       }
 
       if (response.status === 500) {
-        toast.error("Something went wrong. Please try again later.")
+        toast.error('Ocurrió un error. Intenta de nuevo más tarde.')
       }
 
       if (response.ok) {
-        toast.success("You have successfully joined our newsletter.")
+        toast.success('¡Te suscribiste con éxito!')
         form.reset()
         router.refresh()
       }
@@ -86,7 +86,7 @@ export function SubscribeToNewsletterForm() {
               <FormLabel className="sr-only">Email</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="rodneymullen180@gmail.com"
+                  placeholder="ventas@siim.cl"
                   className="pr-12"
                   {...field}
                 />
@@ -105,7 +105,9 @@ export function SubscribeToNewsletterForm() {
                 ) : (
                   <Icons.send className="h-3 w-3" aria-hidden="true" />
                 )}
-                <span className="sr-only">Join newsletter</span>
+                <span className="sr-only">
+                  Botón para unirte al boletín de noticias
+                </span>
               </Button>
             </FormItem>
           )}
