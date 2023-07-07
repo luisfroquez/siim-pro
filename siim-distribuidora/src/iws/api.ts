@@ -1,5 +1,5 @@
 import objectToQueryParams from '@/utils/objectToQueryParams'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { SHA256 } from 'crypto-js'
 
 import { Endpoint, Params } from './types'
@@ -17,7 +17,7 @@ const signature = encrypt(
 
 const token = `apiKey=${process.env.NEXT_PUBLIC_API_KEY}&utcTimeStamp=${utcTimestamp}&signature=${signature}`
 
-export const fetchApiData = async <T extends unknown, P extends Params>(
+export const fetchApiData = async <T, P extends Params>(
   endpoint: Endpoint,
   queryParams: P
 ) => {

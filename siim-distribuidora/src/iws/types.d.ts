@@ -27,4 +27,4 @@ export interface Params
   format?: 'json' | 'csv'
 }
 
-export interface GetCatalogParams extends Params {}
+export type GetCatalogParams = Params

@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { products } from "@/db/schema"
-import type { FileWithPreview } from "@/types"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { generateReactHelpers } from "@uploadthing/react/hooks"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import { type z } from "zod"
+import * as React from 'react'
+import { products } from '@/db/schema'
+import type { FileWithPreview } from '@/types'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { generateReactHelpers } from '@uploadthing/react/hooks'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { type z } from 'zod'
 
-import { getSubcategories } from "@/config/products"
-import { isArrayOfFile } from "@/lib/utils"
-import { productSchema } from "@/lib/validations/product"
-import { Button } from "@/components/ui/button"
+import { getSubcategories } from '@/config/products'
+import { isArrayOfFile } from '@/lib/utils'
+import { productSchema } from '@/lib/validations/product'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -21,8 +21,8 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
@@ -30,12 +30,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { FileDialog } from "@/components/file-dialog"
-import { Icons } from "@/components/icons"
-import { addProductAction, checkProductAction } from "@/app/_actions/product"
-import type { OurFileRouter } from "@/app/api/uploadthing/core"
+} from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
+import { FileDialog } from '@/components/file-dialog'
+import { Icons } from '@/components/icons'
+import { addProductAction, checkProductAction } from '@/app/_actions/product'
+import type { OurFileRouter } from '@/app/api/uploadthing/core'
 
 interface AddProductFormProps {
   storeId: number
@@ -50,18 +50,18 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
   const [isPending, startTransition] = React.useTransition()
 
   // uploadthing
-  const { isUploading, startUpload } = useUploadThing("productImage")
+  const { isUploading, startUpload } = useUploadThing('productImage')
 
   // react-hook-form
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      category: "skateboards",
+      category: 'Detección de Incendio',
     },
   })
 
   // Get subcategories based on category
-  const subcategories = getSubcategories(form.watch("category"))
+  const subcategories = getSubcategories(form.watch('category'))
 
   function onSubmit(data: Inputs) {
     console.log(data)
@@ -78,7 +78,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
           ? await startUpload(data.images).then((res) => {
               const formattedImages = res?.map((image) => ({
                 id: image.fileKey,
-                name: image.fileKey.split("_")[1] ?? image.fileKey,
+                name: image.fileKey.split('_')[1] ?? image.fileKey,
                 url: image.fileUrl,
               }))
               return formattedImages ?? null
@@ -92,7 +92,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
           images,
         })
 
-        toast.success("Product added successfully.")
+        toast.success('Product added successfully.')
 
         // Reset form and files
         form.reset()
@@ -100,7 +100,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
       } catch (error) {
         error instanceof Error
           ? toast.error(error.message)
-          : toast.error("Something went wrong, please try again.")
+          : toast.error('Something went wrong, please try again.')
       }
     })
   }
@@ -117,7 +117,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
             <Input
               aria-invalid={!!form.formState.errors.name}
               placeholder="Type product name here."
-              {...form.register("name")}
+              {...form.register('name')}
             />
           </FormControl>
           <UncontrolledFormMessage
@@ -129,7 +129,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
           <FormControl>
             <Textarea
               placeholder="Type product description here."
-              {...form.register("description")}
+              {...form.register('description')}
             />
           </FormControl>
           <UncontrolledFormMessage
@@ -210,7 +210,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
             <FormControl>
               <Input
                 placeholder="Type product price here."
-                {...form.register("price")}
+                {...form.register('price')}
               />
             </FormControl>
             <UncontrolledFormMessage
@@ -224,7 +224,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
                 type="number"
                 inputMode="numeric"
                 placeholder="Type product inventory here."
-                {...form.register("inventory", {
+                {...form.register('inventory', {
                   valueAsNumber: true,
                 })}
               />

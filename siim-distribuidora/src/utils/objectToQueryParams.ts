@@ -3,7 +3,7 @@ export default function objectToQueryParams<
 >(obj: P) {
   const queryParams = []
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const value = obj[key]
 

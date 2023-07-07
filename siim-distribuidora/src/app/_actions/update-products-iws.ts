@@ -10,7 +10,6 @@ import {
   productCategories,
   productTags,
 } from '@/config/products'
-import { useGetExtendedCatalog } from '@/hooks/use-get-extended-catalog'
 
 export async function updateProducts() {
   const data = await getCatalog()
